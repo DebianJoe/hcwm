@@ -396,6 +396,7 @@ void quit() {
     XEvent ev;
 
     /*
+     Hardcore death-kill which I borrowed from catwm
      * if a client refuses to terminate itself,
      * we kill every window remaining the brutal way.
      * Since we're stuck in the while(nchildren > 0) { ... } loop
