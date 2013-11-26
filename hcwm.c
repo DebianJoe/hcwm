@@ -559,7 +559,7 @@ void spawn(const Arg arg) {
 
 void wmrestore(void) {
     setsid();
-    execvp(wmrestor[0], wmrestor);
+    execvp((char*)wmrestor[0], (char**)wmrestor);
 }
 
 void start() {
