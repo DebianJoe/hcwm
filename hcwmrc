@@ -9,10 +9,12 @@
 
 case "$1" in
     "on") #we're running hcwm as our primary wm
-	hsetroot -fill ~/Xwalls/stockings.jpg
+	# Put stuff here you want to run when you start hcwm
+	# hsetroot -fill ~/Xwalls/stockings.jpg
 	;;
     "off") #we're leaving hcwm, returning to default wm
-	hsetroot -fill ~/Xwalls/abstract.jpg
+	# Put stuff here you want to stop on exiting hcwm
+	# hsetroot -fill ~/Xwalls/abstract.jpg
 	;;
     *) # We broke something. OH NO!!!
 esac
