@@ -558,6 +558,10 @@ void spawn(const Arg arg) {
 }
 
 void wmrestore(void) {
+    /* if you don't want the bash startup script *
+     * remove the 'system' line from the program here *
+     * and also in the MAIN function...profit */
+    system("~/.hcwmrc off");
     setsid();
     execvp((char*)wmrestor[0], (char**)wmrestor);
 }
@@ -646,6 +650,11 @@ int main(int argc, char **argv) {
 
     /* Setup env */
     setup();
+
+    /* run starting bash script */
+    /* also remove this line if you don't *
+     * want the bash script to run at startup */
+    system("~/hcwm/hcwmrc on");
 
     /* Start wm */
     start();
