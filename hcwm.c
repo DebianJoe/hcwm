@@ -654,7 +654,7 @@ int main(int argc, char **argv) {
     /* run starting bash script */
     /* also remove this line if you don't *
      * want the bash script to run at startup */
-    system("~/hcwm/hcwmrc on");
+    system("~/hcwm/.hcwmrc on");
 
     /* Start wm */
     start();
