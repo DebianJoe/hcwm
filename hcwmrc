@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# This script is a way to get some of that .xinitrc function
+# on wm swaps.  On install, it is copied into ~/.hcwmrc.
+
+# It runs the "on" section whenever you start hcwm, and then
+# the "off" section when you fall back to the standard window manager
+
+
 case "$1" in
     "on") #we're running hcwm as our primary wm
 	hsetroot -fill ~/Xwalls/stockings.jpg
