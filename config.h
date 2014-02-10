@@ -4,17 +4,17 @@
 
 /* MODKEY (Mod1 == alt) and master size */
 #define MODKEY          Mod1Mask
-#define MASTER_SIZE     0.6
-
+#define MASTER_SIZE     0.5 /*master, where 1 is all the screen.*/
 /* Colors */
 #define FOCUS           "rgb:bc/57/66"
 #define UNFOCUS         "rgb:88/88/88"
+static int gaps = 10;
 
 /* add custom programs here. */
 const char* dmenucmd[] = {"dmenu_run",NULL};
 const char* emacscmd[] = {"emacs", NULL};
 /* Use the below to set your terminal of choice */
-const char* urxvtcmd[] = {"urxvt",NULL};
+const char* termicmd[] = {"st",NULL};
 
 /* This should allow us to execvp our session into cwm */
 const char* wmrestor[] = {"cwm", NULL};
@@ -37,7 +37,7 @@ static struct key keys[] = {
     {  MODKEY,             XK_Return,                  swap_master,    {NULL}},
     {  MODKEY,             XK_space,                   switch_mode,    {NULL}},
     {  MODKEY,             XK_p,                       spawn,          {.com = dmenucmd}},
-    {  MODKEY|ShiftMask,   XK_Return,                  spawn,          {.com = urxvtcmd}},
+    {  MODKEY|ShiftMask,   XK_Return,                  spawn,          {.com = termicmd}},
     {  MODKEY|ShiftMask,   XK_e,                       spawn,          {.com = emacscmd}},
     {  MODKEY|ShiftMask,   XK_w,                       wmrestore,      {NULL}},
     {  MODKEY,             XK_Right,                   next_desktop,   {NULL}},

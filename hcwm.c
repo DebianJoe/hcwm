@@ -596,24 +596,25 @@ void tile() {
 
     /* If only one window */
     if(head != NULL && head->next == NULL) {
-        XMoveResizeWindow(dis,head->win,10,10,sw-20,sh-20);
+        XMoveResizeWindow(dis,head->win,10,10,sw-30,sh-20);
     }
     else if(head != NULL) {
         switch(mode) {
 	case 0:
 	    /* Master window */
-	    XMoveResizeWindow(dis,head->win,10,10,master_size-20,sh-20);
+	    XMoveResizeWindow(dis,head->win,gaps,gaps,master_size-(2*gaps),sh-(2*gaps));
 
 	    /* Stack */
 	    for(c=head->next;c;c=c->next) ++n;
 	    for(c=head->next;c;c=c->next) {
-		XMoveResizeWindow(dis,c->win,master_size+10,y+10,sw-master_size-10,(sh/n)-20);
+		XMoveResizeWindow(dis,c->win,master_size+gaps,y+gaps,sw-master_size-(3*gaps),(sh/n)-(2*gaps));
 		y += sh/n;
 	    }
 	    break;
 	case 1:
 	    for(c=head;c;c=c->next) {
-		XMoveResizeWindow(dis,c->win,10,10,sw-20,sh-20);
+		/*XMoveResizeWindow(dis,c->win,10,10,sw-20,sh-20);*/
+		XMoveResizeWindow(dis,c->win,gaps,gaps,sw-(2*gaps),sh-(2*gaps));
 	    }
 	    break;
 	default:
