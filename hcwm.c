@@ -532,7 +532,7 @@ void setup() {
 }
 
 void sigchld(int unused) {
-    /* Again, thx to dwm */
+    /* Again, thx to dwm and catwm */
     if(signal(SIGCHLD, sigchld) == SIG_ERR)
 	die("Can't install SIGCHLD handler");
     while(0 < waitpid(-1, NULL, WNOHANG));
@@ -613,7 +613,6 @@ void tile() {
 	    break;
 	case 1:
 	    for(c=head;c;c=c->next) {
-		/*XMoveResizeWindow(dis,c->win,10,10,sw-20,sh-20);*/
 		XMoveResizeWindow(dis,c->win,gaps,gaps,sw-(2*gaps),sh-(2*gaps));
 	    }
 	    break;
