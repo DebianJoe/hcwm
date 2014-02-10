@@ -214,12 +214,12 @@ void dnotify(XEvent *e) {
     client *c;
     XDestroyWindowEvent *ev = &e->xdestroywindow;
 
-    /* Uber (and ugly) hack ;) */
+    /* Stole this all from catwm */
     for(c=head;c;c=c->next)
         if(ev->window == c->win)
             i++;
 
-    /* End of the hack */
+    /* End of the outright theft */
     if(i == 0)
         return;
 
@@ -337,7 +337,9 @@ void move_up() {
 
 void next_desktop() {
     int tmp = current_desktop;
-    if(tmp== 9)
+    /* Need to set this to max desktop number */
+    /* +1 because we're indexing from 1 */
+    if(tmp==5)
         tmp = 0;
     else
         tmp++;
@@ -596,30 +598,31 @@ void switch_mode() {
 }
 
 void tile() {
+    /* geometry determined by (display, w, x, y, width, height) */
     client *c;
     int n = 0;
     int y = 0;
 
     /* If only one window */
     if(head != NULL && head->next == NULL) {
-        XMoveResizeWindow(dis,head->win,0,0,sw-2,sh-2);
+        XMoveResizeWindow(dis,head->win,10,10,sw-20,sh-20);
     }
     else if(head != NULL) {
         switch(mode) {
 	case 0:
 	    /* Master window */
-	    XMoveResizeWindow(dis,head->win,0,0,master_size-2,sh-2);
+	    XMoveResizeWindow(dis,head->win,10,10,master_size-20,sh-20);
 
 	    /* Stack */
 	    for(c=head->next;c;c=c->next) ++n;
 	    for(c=head->next;c;c=c->next) {
-		XMoveResizeWindow(dis,c->win,master_size,y,sw-master_size-2,(sh/n)-2);
+		XMoveResizeWindow(dis,c->win,master_size+10,y+10,sw-master_size-10,(sh/n)-22);
 		y += sh/n;
 	    }
 	    break;
 	case 1:
 	    for(c=head;c;c=c->next) {
-		XMoveResizeWindow(dis,c->win,0,0,sw,sh);
+		XMoveResizeWindow(dis,c->win,10,10,sw-20,sh-20);
 	    }
 	    break;
 	default:
