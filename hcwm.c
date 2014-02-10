@@ -83,7 +83,7 @@ static void update_current();
 /* Include configuration file */
 #include "config.h"
 
-/* Variables */
+/* Globally Declared Variables */
 static Display *dis;
 static int bool_quit;
 static int current_desktop;
@@ -442,7 +442,6 @@ void remove_window(Window w) {
                 current = NULL;
                 return;
             }
-
             if(c->prev == NULL) {
                 head = c->next;
                 c->next->prev = NULL;
@@ -457,7 +456,6 @@ void remove_window(Window w) {
                 c->next->prev = c->prev;
                 current = c->prev;
             }
-
             free(c);
             return;
         }
@@ -493,28 +491,21 @@ void send_kill_signal(Window w) {
 void setup() {
     /* Create a child process */
     sigchld(0);
-
     /* Screen and root window */
     screen = DefaultScreen(dis);
     root = RootWindow(dis,screen);
-
     /* Screen width and height */
     sw = XDisplayWidth(dis,screen);
     sh = XDisplayHeight(dis,screen);
-
     /* Colors */
     win_focus = getcolor(FOCUS);
     win_unfocus = getcolor(UNFOCUS);
-
     /* Shortcuts */
     grabkeys();
-
     /* Vertical stack */
     mode = 0;
-
     /* For exiting */
     bool_quit = 0;
-
     /* List of client */
     head = NULL;
     current = NULL;
@@ -616,7 +607,7 @@ void tile() {
 	    /* Stack */
 	    for(c=head->next;c;c=c->next) ++n;
 	    for(c=head->next;c;c=c->next) {
-		XMoveResizeWindow(dis,c->win,master_size+10,y+10,sw-master_size-10,(sh/n)-22);
+		XMoveResizeWindow(dis,c->win,master_size+10,y+10,sw-master_size-10,(sh/n)-20);
 		y += sh/n;
 	    }
 	    break;
