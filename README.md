@@ -34,4 +34,4 @@ A. I would like to see more people simply change stuff that they don't like in p
 
 License
 ====
-Due to my "borrowing" large portions of code from dwm, this is released under the MIT/X consortium license.  Please read the included License file.
+Due to my "borrowing" large portions of code from dwm and catwm, this is released under the MIT/X consortium license.  Please read the included License file.  Without all of their previous work, I wouldn't have been able to screw it up and make this. - joe
