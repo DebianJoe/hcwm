@@ -13,7 +13,7 @@ Clone this repo.  cd into it.  Edit config.h with whatever terminals and program
 
 Usage
 ====
-All of the keybinds are listed in the config.h header.  I didn't write a man page.  If you wish to make some kind of a change that occurs when wm swapping (such as spawning hcwm from another wm, then edit the 'hcwmrc' bash script before you "make install".  This file will be copied into ~/.hcwmrc, so future edits can be done directly to this file without having to rebuild.
+All of the keybinds are listed in the config.h header.  I didn't write a man page.  If you wish to make some kind of a change that occurs when wm swapping (such as spawning hcwm from another wm, then edit the 'hcwmrc' bash script before you "make install".  This file needs to be manually copied into ~/.hcwmrc, so future edits can be done directly to this file without having to rebuild.  It's just bash, be creative.  
 
 FAQ
 ====

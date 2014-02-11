@@ -15,7 +15,6 @@ hcwm: hcwm.o
 
 install: all
 	install -Dm 755 hcwm $(DESTDIR)$(BINDIR)/hcwm
-	cp hcwmrc ~/.hcwmrc
 
 clean:
 	rm -f hcwm *.o
