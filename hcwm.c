@@ -596,7 +596,7 @@ void tile() {
 
     /* If only one window */
     if(head != NULL && head->next == NULL) {
-        XMoveResizeWindow(dis,head->win,10,10,sw-30,sh-20);
+        XMoveResizeWindow(dis,head->win,gaps,gaps,sw-(3*gaps),sh-(gaps*2));
     }
     else if(head != NULL) {
         switch(mode) {
