@@ -31,7 +31,6 @@ struct client{
     /* Previous and next client */
     client *next;
     client *prev;
-
     /* The window */
     Window win;
 };
@@ -74,6 +73,7 @@ static void setup();
 static void sigchld(int unused);
 static void spawn(const Arg arg);
 static void wmrestore();
+static void stackmode();
 static void start();
 static void swap_master();
 static void switch_mode();
@@ -97,7 +97,7 @@ static unsigned int win_unfocus;
 static Window root;
 static client *head;
 static client *current;
-
+int swmode = 0; /*start with side stack*/
 /* Events array */
 static void (*events[LASTEvent])(XEvent *e) = {
     [KeyPress] = keypress,
@@ -588,6 +588,20 @@ void switch_mode() {
     update_current();
 }
 
+void stackmode() {
+    /* shift from side to bottom stack */
+    if(swmode == 0) {
+	master_size = sh*MASTER_SIZE;
+	swmode = 1;
+    }
+    else if(swmode == 1) {
+	master_size = sw*MASTER_SIZE;
+	swmode = 0;
+    }
+    tile();
+    update_current();
+}
+
 void tile() {
     /* geometry determined by (display, w, x, y, width, height) */
     client *c;
@@ -598,17 +612,39 @@ void tile() {
     if(head != NULL && head->next == NULL) {
         XMoveResizeWindow(dis,head->win,gaps,gaps,sw-(3*gaps),sh-(gaps*2));
     }
-    else if(head != NULL) {
+/* side stack */
+    else if(head != NULL && swmode == 0) {
+        switch(mode) {
+    	case 0:
+    	    /* Master window */
+    	    XMoveResizeWindow(dis,head->win,gaps,gaps,master_size-(2*gaps),sh-(2*gaps));
+
+    	    /* Stack */
+    	    for(c=head->next;c;c=c->next) ++n;
+    	    for(c=head->next;c;c=c->next) {
+    		XMoveResizeWindow(dis,c->win,master_size+gaps,y+gaps,sw-master_size-(3*gaps),(sh/n)-(2*gaps));
+    		y += sh/n;
+    	    }
+    	    break;
+    	case 1:
+    	    for(c=head;c;c=c->next) {
+    		XMoveResizeWindow(dis,c->win,gaps,gaps,sw-(2*gaps),sh-(2*gaps));
+    	    }
+    	    break;
+	}
+    }
+    /*bottom stack*/
+    else if(head != NULL && swmode == 1) {
         switch(mode) {
 	case 0:
 	    /* Master window */
-	    XMoveResizeWindow(dis,head->win,gaps,gaps,master_size-(2*gaps),sh-(2*gaps));
+	    XMoveResizeWindow(dis,head->win,gaps,gaps,sw-(2*gaps),master_size-(2*gaps));
 
 	    /* Stack */
 	    for(c=head->next;c;c=c->next) ++n;
 	    for(c=head->next;c;c=c->next) {
-		XMoveResizeWindow(dis,c->win,master_size+gaps,y+gaps,sw-master_size-(3*gaps),(sh/n)-(2*gaps));
-		y += sh/n;
+		XMoveResizeWindow(dis,c->win,y+gaps,master_size + gaps,(sw/n)-(2*gaps),sh-master_size-(3*gaps));
+		y += sw/n;
 	    }
 	    break;
 	case 1:
@@ -616,6 +652,7 @@ void tile() {
 		XMoveResizeWindow(dis,c->win,gaps,gaps,sw-(2*gaps),sh-(2*gaps));
 	    }
 	    break;
+
 	default:
 	    break;
         }

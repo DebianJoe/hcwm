@@ -22,7 +22,8 @@ const char* wmrestor[] = {"cwm", NULL};
 #define DESKTOPCHANGE(K,N) \
     {  MODKEY,             K,                          change_desktop, {.i = N}}, \
     {  MODKEY|ShiftMask,   K,                          client_to_desktop, {.i = N}},
-
+/* declare stacking mode */
+extern int swmode;
 /* Define Keybinds for Programs Here */
 static struct key keys[] = {
     /* MODKEY              KEY                         FUNCTION        ARGS*/
@@ -32,21 +33,22 @@ static struct key keys[] = {
     {  MODKEY,             XK_j,                       next_win,       {NULL}},
     {  MODKEY,             XK_Tab,                     next_win,       {NULL}},
     {  MODKEY,             XK_k,                       prev_win,       {NULL}},
-    {  MODKEY|ShiftMask,   XK_j,                       move_up,        {NULL}},
-    {  MODKEY|ShiftMask,   XK_k,                       move_down,      {NULL}},
+    {  MODKEY|ControlMask,   XK_j,                       move_up,        {NULL}},
+    {  MODKEY|ControlMask,   XK_k,                       move_down,      {NULL}},
     {  MODKEY,             XK_Return,                  swap_master,    {NULL}},
     {  MODKEY,             XK_space,                   switch_mode,    {NULL}},
     {  MODKEY,             XK_p,                       spawn,          {.com = dmenucmd}},
-    {  MODKEY|ShiftMask,   XK_Return,                  spawn,          {.com = termicmd}},
-    {  MODKEY|ShiftMask,   XK_e,                       spawn,          {.com = emacscmd}},
-    {  MODKEY|ShiftMask,   XK_w,                       wmrestore,      {NULL}},
+    {  MODKEY|ControlMask,   XK_Return,                  spawn,          {.com = termicmd}},
+    {  MODKEY|ControlMask,   XK_e,                       spawn,          {.com = emacscmd}},
+    {  MODKEY|ControlMask,   XK_w,                       wmrestore,      {NULL}},
+    {  MODKEY|ControlMask,   XK_s,                     stackmode,      {NULL}},
     {  MODKEY,             XK_Right,                   next_desktop,   {NULL}},
     {  MODKEY,             XK_Left,                    prev_desktop,   {NULL}},
        DESKTOPCHANGE(      XK_1,                                       0)
        DESKTOPCHANGE(      XK_2,                                       1)
        DESKTOPCHANGE(      XK_3,                                       2)
        DESKTOPCHANGE(      XK_4,                                       3)
-    {  MODKEY|ShiftMask,   XK_q,                       quit,           {NULL}}
+    {  MODKEY|ControlMask,   XK_q,                       quit,           {NULL}}
 };
 
 #endif
