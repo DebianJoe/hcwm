@@ -6,15 +6,17 @@
 #define MODKEY          Mod1Mask
 #define MASTER_SIZE     0.5 /*master, where 1 is all the screen.*/
 /* Colors */
-#define FOCUS           "rgb:bc/57/66"
-#define UNFOCUS         "rgb:88/88/88"
-static int gaps = 10;
+#define FOCUS           "rgb:2C/1B/12"
+#define UNFOCUS         "rgb:00/00/00"
+/* Border Control */
+static int gaps = 11;   /* set gaps between windows */
+static int boarders = 4;/* set width of window boarders */
 
 /* add custom programs here. */
 const char* dmenucmd[] = {"dmenu_run",NULL};
 const char* emacscmd[] = {"emacs", NULL};
 /* Use the below to set your terminal of choice */
-const char* termicmd[] = {"st",NULL};
+const char* termicmd[] = {"urxvt",NULL};
 
 /* This should allow us to execvp our session into cwm */
 const char* wmrestor[] = {"cwm", NULL};
@@ -29,7 +31,7 @@ static struct key keys[] = {
     /* MODKEY              KEY                         FUNCTION        ARGS*/
     {  MODKEY,             XK_h,                       decrease,       {NULL}},
     {  MODKEY,             XK_l,                       increase,       {NULL}},
-    {  MODKEY,             XK_x,                       kill_client,    {NULL}},
+    {  MODKEY|ControlMask, XK_x,                       kill_client,    {NULL}},
     {  MODKEY,             XK_j,                       next_win,       {NULL}},
     {  MODKEY,             XK_Tab,                     next_win,       {NULL}},
     {  MODKEY,             XK_k,                       prev_win,       {NULL}},
