@@ -523,7 +523,7 @@ void setup() {
     }
 
     /* Select first dekstop by default */
-    const Arg arg = {.i = 1};
+    const Arg arg = {.i = 0};
     current_desktop = arg.i;
     change_desktop(arg);
 
