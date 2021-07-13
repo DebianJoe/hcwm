@@ -27,10 +27,10 @@ Q. How do I launch programs if I don't want to write keybinds for them?
 A. Use dmenu.
 
 Q. I want to see (______) feature, will you add it?
-A. NO!  Get a wm that suits you.  I don't care if you use my stuff or not.
+A. NO!  Get a wm that suits you.
 
 Q. Why "heavily commented?"
-A. I would like to see more people simply change stuff that they don't like in programs themselves rather than bloating up a perfectly good program through feature requests.  I only ever use 4 virtual desktops, so that's all I wrote it to handle.  If you want more, find the comments about it and change it yourself.  Take control.  I'm not your slave.
+A. I would like to see more people simply change stuff that they don't like in programs themselves rather than bloating up a perfectly good program through feature requests.  I only ever use 4 virtual desktops, so that's all I wrote it to handle.  If you want more, find the comments about it and change it yourself.  Take control.
 
 License
 ====
