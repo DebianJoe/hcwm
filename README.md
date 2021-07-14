@@ -9,7 +9,7 @@ I really like cwm, and I also really like tiling.  Since cwm gives the option to
 
 Installation
 ====
-Clone this repo.  cd into it.  Edit config.h with whatever terminals and programs you wish to attach to keybinds.  After that, "make install" should build it (with some 'minor warnings from gcc'...ignore those, real men don't care about compiler warnings.)  "make clean" to remove extra junk.  From there, run it.
+Clone this repo.  cd into it.  Edit config.h with whatever terminals and programs you wish to attach to keybinds.  After that, "make install" should build it (with some 'minor warnings from gcc'...ignore those, pros don't care about compiler warnings.)  "make clean" to remove extra junk.  From there, run it.
 
 Usage
 ====
